@@ -32,7 +32,7 @@ function Todo() {
       <br />
       <br />
       {items.map((item, key) => (
-        <div key={key}>{item.name}</div>
+        <div data-testid="items" key={key}>{item.name}</div>
       ))}
     </div>
   );
