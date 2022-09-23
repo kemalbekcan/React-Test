@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, wait } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Todo from "./index";
 
@@ -18,7 +18,7 @@ describe("Todo tests", () => {
     expect(items.length).toEqual(3);
   });
 
-  test("input and button must be present in the component", () => {
+  test("input and button must be present in the component", async () => {
     expect(button).toBeInTheDocument();
     expect(input).toBeInTheDocument();
   });
@@ -27,7 +27,9 @@ describe("Todo tests", () => {
     const name = "Mehmet";
     userEvent.type(input, name);
     userEvent.click(button);
+    const items = screen.getAllByTestId("items");
 
+    expect(items.length).toEqual(4);
     expect(screen.getByText(name)).toBeInTheDocument();
   });
 });
